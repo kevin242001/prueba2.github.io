@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuenta Regresiva</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .countdown {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .time-unit {
+            display: inline-block;
+            margin: 0 10px;
+        }
+
+        .number {
+            font-size: 36px;
+            font-weight: bold;
+        }
+
+        .unit {
+            font-size: 16px;
+        }
+
+        #redirectButton {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        #redirectButton:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="countdown">
+        <h1>Cuenta Regresiva</h1>
+        <div id="timer">
+            <div id="days" class="time-unit">
+                <span class="number">0</span>
+                <span class="unit">Días</span>
+            </div>
+            <div id="hours" class="time-unit">
+                <span class="number">0</span>
+                <span class="unit">Horas</span>
+            </div>
+            <div id="minutes" class="time-unit">
+                <span class="number">0</span>
+                <span class="unit">Minutos</span>
+            </div>
+            <div id="seconds" class="time-unit">
+                <span class="number">0</span>
+                <span class="unit">Segundos</span>
+            </div>
+        </div>
+        <button id="redirectButton">regresar inicio</button>
+    </div>
+
+    <script>
+        // Set the target date (4 days from now)
+        const targetDate = new Date();
+        targetDate.setDate(targetDate.getDate() + 4);
+
+        function updateCountdown() {
+            const currentDate = new Date();
+            const timeDifference = targetDate - currentDate;
+
+            const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerHTML = days;
+            document.getElementById("hours").innerHTML = hours;
+            document.getElementById("minutes").innerHTML = minutes;
+            document.getElementById("seconds").innerHTML = seconds;
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // Redirect to another page when the button is clicked
+        document.getElementById("redirectButton").addEventListener("click", function() {
+            window.location.href = "otra_pagina.html";
+        });
+    </script>
+</body>
+</html>
